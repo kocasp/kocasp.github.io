@@ -1,0 +1,263 @@
+---
+layout: default
+comments: true
+title:  "Another post"
+---
+    <!-- Header -->
+    <header>
+        <div class="blue-stripe">
+            s
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <section class="portfolio post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Another sample post</h2>
+                    <p>Added 03.01.17</p>
+                    <hr class="star-primary star-primary-post">
+                </div>
+            </div>
+            <div class="row article-picture">
+                <div class="col-lg-10 col-lg-offset-1 image-responsive">
+                    <img src="img/portfolio/ovhrails.jpg" class="img-responsive img-centered" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div id="preview" preview="" debounce="150">
+
+<h3><a id="Setup_ssh_login_for_deploy_2"></a>Setup ssh login for deploy</h3>
+<ul>
+<li>ssh <a href="mailto:root@xxx.xxx.xxx.xxx">root@xxx.xxx.xxx.xxx</a> providing a password from email</li>
+<li>create non-root user <code>useradd -d /home/deploy -m deploy</code> and set a password for him <code>passwd deploy</code></li>
+<li>run <code>visudo</code> and add a line below</li>
+</ul>
+<pre><code>deploy ALL=(ALL) ALL
+</code></pre>
+<ul>
+<li>run <code>vi /etc/ssh/sshd_config</code> and change following lines:</li>
+</ul>
+<pre><code>Port 4321
+PermitRootLogin no
+...
+AllowUsers deploy
+</code></pre>
+<ul>
+<li>restart ssh</li>
+</ul>
+<pre><code>service ssh restart
+</code></pre>
+<ul>
+<li>set bash for deploy user</li>
+</ul>
+<pre><code>chsh -s /bin/bash deploy
+</code></pre>
+<ul>
+<li>log in as deploy via <code>ssh deploy@xxx.xxx.xxx.xxx -p 4321</code> and run:</li>
+</ul>
+<pre><code>mkdir ~/.ssh
+</code></pre>
+<ul>
+<li>log out from server</li>
+<li>being on local, add id_rsa.pub to authorized_keys on the server</li>
+</ul>
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh deploy@xxx.xxx.xxx.xxx -p 4321 'cat - &gt;&gt; ~/.ssh/authorized_keys'
+</code></pre>
+<ul>
+<li>log in by <code>ssh deploy@xxx.xxx.xxx.xxx -p 4321</code> and change authorized_keys permissions by:</li>
+</ul>
+<pre><code>sudo chmod 600 ~/.ssh/authorized_keys &amp;&amp; chmod 700 ~/.ssh/
+</code></pre>
+<ul>
+<li>ssh login with <code>deploy@xxx.xxx.xxx.xxx -p 4321</code> is now enabled and secured</li>
+</ul>
+<h3><a id="Setup_server_environment_40"></a>Setup server environment</h3>
+<ul>
+<li>prepare your system</li>
+</ul>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get install curl -y
+</code></pre>
+<ul>
+<li>generate ssh key:</li>
+</ul>
+<pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+</code></pre>
+<ul>
+<li>install ruby using RVM: (in case it fails, run commands mentioned in the error message and try again)</li>
+</ul>
+<pre><code>$ \curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+<ul>
+<li>run:</li>
+</ul>
+<pre><code>source /home/deploy/.rvm/scripts/rvm
+</code></pre>
+<ul>
+<li>install ruby 2.2.2 and set it as default</li>
+</ul>
+<pre><code>$ rvm install 2.2.2
+$ rvm --default use 2.2.2
+</code></pre>
+<ul>
+<li>install bundler:</li>
+</ul>
+<pre><code>gem install bundler
+</code></pre>
+<ul>
+<li>install Node.js</li>
+</ul>
+<pre><code>sudo apt-get install -y nodejs
+</code></pre>
+<h3><a id="Add_server_key_to_the_repository_access_72"></a>Add server key to the repository access</h3>
+<ul>
+<li>on server, check and copy id_rsa.pub with <code>cat ~/.ssh/id_rsa.pub | pbcopy</code> and add its content to repository (bitbucket/github) deployment keys</li>
+</ul>
+<h3><a id="Install_and_setup_postgresql_db_on_server_76"></a>Install and setup postgresql db on server:</h3>
+<pre><code>$ sudo apt-get install -y postgresql postgresql-contrib
+$ sudo apt-get install -y libpq-dev
+$ sudo apt-get clean
+</code></pre>
+<ul>
+<li>on server: create user for app (replace sampleuser with your username and password with your password)</li>
+</ul>
+<pre><code>$ sudo -u postgres psql -c "CREATE USER sampleuser WITH PASSWORD 'password' CREATEDB;"
+$ sudo -u postgres psql -c "CREATE DATABASE app_production;"
+$ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE app_production to sampleuser;"
+$ sudo -u postgres psql -c "ALTER USER sampleuser WITH SUPERUSER;"
+</code></pre>
+<ul>
+<li>create database.yml in shared directory</li>
+</ul>
+<pre><code>$ mkdir -p ~/apps/literki/shared/pids
+$ mkdir -p ~/apps/literki/shared/log
+$ mkdir -p ~/apps/literki/releases
+$ mkdir -p ~/apps/literki/shared/config
+$ cd ~/apps/literki/shared/config
+$ vi database.yml
+</code></pre>
+<p>paste following content in vi editor:</p>
+<pre><code>production:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: app_production
+  username: sampleuser
+  password: password
+</code></pre>
+<ul>
+<li>create application.yml in shared directory. Being still in shared/config folder:</li>
+</ul>
+<pre><code>$ touch application.yml
+</code></pre>
+<h3><a id="Install_nginx_server_113"></a>Install nginx server</h3>
+<ul>
+<li>run</li>
+</ul>
+<pre><code>sudo apt-get install -y nginx
+</code></pre>
+<ul>
+<li>next run</li>
+</ul>
+<pre><code>sudo vi /etc/nginx/sites-enabled/default
+</code></pre>
+<p>erase all fily by pressing ESC then type :1,$d and ENTER<br>
+and paste the following:</p>
+<pre><code>#this should be placed under /etc/nginx/sites-enabled/default
+#remember about changing xxx.xxx.xxx.xxx to IP address and updating app paths
+
+upstream unicorn {
+  server unix:/tmp/unicorn.spui.sock fail_timeout=0;
+}
+
+server {
+  listen 80 default deferred;
+  server_name xxx.xxx.xxx.xxx;
+  root /home/deploy/apps/literki/current/public;
+  error_log  /etc/nginx/nginx_error.log  warn;
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  location /cable {
+     proxy_pass http://unicorn/cable;
+     proxy_http_version 1.1;
+     proxy_set_header Upgrade websocket;
+     proxy_set_header Connection Upgrade;
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+
+  location ~ ^/(robots.txt|sitemap.xml.gz)/ {
+    root /home/deploy/apps/literki/current/public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://unicorn;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
+
+
+</code></pre>
+<ul>
+<li>run puma from current directory:</li>
+</ul>
+<pre><code>bundle exec puma -e production -b unix:///home/deploy/apps/letters/shared/tmp/sockets/letters-puma.sock --daemon
+</code></pre>
+<ul>
+<li>install redis server and run as daemon</li>
+</ul>
+<pre><code>$ sudo apt-get install redis-server
+$ redis-server --daemonize yes
+</code></pre>
+<ul>
+<li>restart nginx with:</li>
+</ul>
+<pre><code>sudo service nginx restart
+</code></pre>
+<ul>
+<li>install git</li>
+</ul>
+<pre><code>sudo apt-get install git
+</code></pre>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://kocasp.github.io{{ page.url }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "kocasp-github-io"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://kocasp-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
