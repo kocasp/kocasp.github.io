@@ -126,7 +126,7 @@ title: "Konrad Strojny portfolio"
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Recent Own Projects</h2>
+                    <h2>Own Projects</h2>
                     <hr class="star-primary star-primary-projects">
                 </div>
             </div>
@@ -151,6 +151,34 @@ title: "Konrad Strojny portfolio"
                         <span class="label label-success">Design</span>
                         <span class="label label-warning">Frontend</span>
                         <span class="label label-primary">Backend</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/pirl.gif" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-8">
+                    <h3>Motivation Gamification App</h3>
+                    <p>
+                        Play-In-Real-Life is a iOS and Android App that lets you set goals and motivates you to achieve them.
+                        You can also share your goal with your friends so they can add you some rewards!
+                        <br>
+                        Backend is Ruby on Rails, mobile app is designed with Sketch and Flinto and written in React Native
+                        <br>
+                        (currently in development)
+                        <br>
+                        <span class="label label-success">Design</span>
+                        <span class="label label-warning">Frontend</span>
+                        <span class="label label-primary">Backend</span>
+                        <span class="label label-danger">Mobile</span>
                     </p>
                 </div>
             </div>
@@ -198,7 +226,7 @@ title: "Konrad Strojny portfolio"
                         <br>
                         <a href="http://owezone.herokuapp.com"> See it on Heroku</a>
                         <br/>
-                        <a href="www.github.com/kocasp/owezone/">See the project on GitHub</a>
+                        <a href="http://www.github.com/kocasp/owezone/">See the project on GitHub</a>
                         <br/>
                         <span class="label label-success">Design</span>
                         <span class="label label-warning">Frontend</span>
@@ -217,46 +245,62 @@ title: "Konrad Strojny portfolio"
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/owezone.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/handsandfeet.jpg" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/codequack.jpg" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/travel_mini.jpg" class="img-responsive" alt="">
-                    </a>
-                </div>
+                {% include design_item.html
+                  id = "1"
+                  src="img/portfolio/owezone.png"
+                  title="OweZone"
+                  text="Owe zone is my first-ever Ruby on Rails application from 2013. The idea is to manage common spendings on a trip or event. App is analysing who was paying for goods and who was using them and then calculating who owes money to whom. Currently its a web-only responsive app but probably will be ported to native app soon."
+                  date="November 2013"
+                  tools="Ruby on Rails, Bootstrap"
+                %}
+                {% include design_item.html
+                  id = "2"
+                  src="img/portfolio/handsandfeet.jpg"
+                  title="RIN club"
+                  text="This was the first project for new RiN music club that was initially named 'Rece i nogi' (eng. 'Hands and feet'). Unfortunately client decided to break with hands and feet convention. Final version of different concept of logo is available on rinclub.pl and on the streets of Cracow main square."
+                  date="December 2012"
+                  tools="Photoshop"
+                %}
+                {% include design_item.html
+                  id = "3"
+                  src="img/portfolio/codequack.jpg"
+                  title="Code Quack"
+                  text="CodeQuack is a web development learning latform where you can start your programming adventure. The idea was to combine letters Q and C to look like magnifying glass. Mascuotte called 'Quacky' was designed to guide user through Ruby programming course."
+                  client="CodeQuack"
+                  client_link="http://codequack.com"
+                  date="October 2015"
+                  tools="Photoshop"
+                %}
+                {% include design_item.html
+                  id = "4"
+                  src="img/portfolio/travel.jpg"
+                  title="Travel Me"
+                  text="TravelMe is a travel agency that designs individual journeys per request. The logo was refering to travel and was supposed to induce a feeling of freedom. It is very satisfying for designer to see the logo used in exotic places."
+                  client="TravelMe"
+                  client_link="http://travelme.pl"
+                  date="March 2013"
+                  tools="Illustrator"
+                %}
+                {% include design_item.html
+                  id = "5"
+                  src="img/portfolio/juggler.jpg"
+                  title="Juggler"
+                  text="This is a character ment to be a mascot on a gem landing page.
+                    Gem is used to shuffle and assign internal pull-request.
+                    The juggling ladybird was design to reflect a PR shuffling process and a ladybird which was the main motive of the company identification."
+                  client="Visuality"
+                  client_link="http://visuality.pl"
+                  date="December 2015"
+                  tools="Illustrator"
+                %}
+                {% include design_item.html
+                  id = "6"
+                  src="img/portfolio/hexgame.jpg"
+                  title="Hex Game Design"
+                  text="This is a design of a mobile game inspired by popular HIVE board game. <br> <a href='https://en.wikipedia.org/wiki/Hive_(game)'>Info about HIVE</a>"
+                  date="March 2013"
+                  tools="Illustrator"
+                %}
             </div>
         </div>
     </section>
@@ -365,228 +409,4 @@ title: "Konrad Strojny portfolio"
         <a class="btn btn-primary" href="#page-top">
             <i class="fa fa-chevron-up"></i>
         </a>
-    </div>
-
-    <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>OweZone app</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/owezone.png" class="img-responsive img-centered" alt="">
-                            <p>Owe zone is my first-ever Ruby on Rails application from 2013. The idea is to manage common spendings on a trip or event. App is analysing who was paying for goods and who was using them and then calculating who owes money to whom. Currently its a web-only responsive app but probably will be ported to native app soon.</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Own project</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">November 2013</a>
-                                    </strong>
-                                </li>
-                                <li>Tools:
-                                    <strong><a href="http://startbootstrap.com">Ruby on Rails, Bootstrap</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>RIN CLUB</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/handsandfeet.jpg" class="img-responsive img-centered" alt="">
-                            <p>This was the first project for new RiN music club that was initially named "Rece i nogi" (eng. "Hands and feet"). Unfortunately client decided to break with hands and feet convention. Final version of different concept of logo is available on <a href="http://rinclub.pl" target="_blank">the official site</a> and on the streets of Cracow main square.</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://rinclub.pl">Rin club Krakow</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="#">December 2012</a>
-                                    </strong>
-                                </li>
-                                <li>Tools:
-                                    <strong><a href="#">Photoshop</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Code Quack</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/codequack.jpg" class="img-responsive img-centered" alt="">
-                            <p>CodeQuack is a web development learning latform where you can start your programming adventure. The idea was to combine letters Q and C to look like magnifying glass. Mascuotte called "Quacky" was designed to guide user through Ruby programming course.</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://codequack.com" target="_blank">CodeQuack.com</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="#">October 2015</a>
-                                    </strong>
-                                </li>
-                                <li>Tools:
-                                    <strong><a href="http://startbootstrap.com">Photoshop, Illustrator</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>TravelMe</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/travel.jpg" class="img-responsive img-centered" alt="">
-                            <p>TravelMe is a travel agency that designs individual journeys per request. The logo was refering to travel and was supposed to induce a feeling of freedom. It is very satisfying for designer to see the logo used in such places: <a href="http://travelme.pl/wp-content/uploads/2013/12/travelme-podroze-szyte-na-miare-tailor-made-tours-backpacking-podroz-afryka.jpg">LINK</a></p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://travelme.pl">Travel Me</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="#">March 2013</a>
-                                    </strong>
-                                </li>
-                                <li>Tools:
-                                    <strong><a href="#">Illustrator</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Letters game</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/letters.gif" class="img-responsive img-centered" alt="">
-                            <p>Letters' is a multiplayer game written in Rails 5. Action Cable web Sockets are used. Rules are innovative and players are able to learn new words in freign or native language. Web interface is native so Phonegap wrapped iPhone and Android applications are on their way.</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Own project</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">January 2016</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Ruby on Rails 5, Action Cable</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Railsfox</h2>
-                            <!-- <hr class="star-primary"> -->
-                            <img src="img/portfolio/railsfox.jpg" class="img-responsive img-centered" alt="">
-                            <p>This is a web app with web crowler working in background. Application collects data from UX-unfriendly polish rails company webpage, collects it and displays in readable form. Cheapest premium connections are highlighted. You are able easily find 50% discount for your journey.</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Own project</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">October 2016</a>
-                                    </strong>
-                                </li>
-                                <li>Tools:
-                                    <strong><a href="http://startbootstrap.com">Ruby on Rails, Capybara Poltergeist (PhantomJS driver)</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
