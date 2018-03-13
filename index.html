@@ -132,7 +132,7 @@ title: "Konrad Strojny portfolio"
             </div>
             <div class="row">
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                    <a href="#portfolioModal8" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -154,6 +154,14 @@ title: "Konrad Strojny portfolio"
                     </p>
                 </div>
             </div>
+            {% include item_modal.html
+              id = "8"
+              src= "img/portfolio/letters.gif"
+              title= "Letters Game"
+              text= "Text"
+              date= "Date"
+              tools= "Tools"
+            %}
             <div class="row">
                 <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
@@ -170,10 +178,13 @@ title: "Konrad Strojny portfolio"
                     <p>
                         Play-In-Real-Life is a iOS and Android App that lets you set goals and motivates you to achieve them.
                         You can also share your goal with your friends so they can add you some rewards!
-                        <br>
                         Backend is Ruby on Rails, mobile app is designed with Sketch and Flinto and written in React Native
                         <br>
                         (currently in development)
+                        <br/>
+                        <a href="/downloads/pirl.sketch">Download Sketch Project</a>
+                        <br>
+                        <a href="/downloads/pirl.flinto">Download Flinto Animation</a>
                         <br>
                         <span class="label label-success">Design</span>
                         <span class="label label-warning">Frontend</span>
@@ -198,7 +209,9 @@ title: "Konrad Strojny portfolio"
                     <p>
                         This is a web app with web crowler working in background. Application collects data from unfriendly polish rails company, collects it and displays in readable form. Cheapest premium connections are highlighted. You are able easily find 50% discount for your journey.
                         <br/>
-                        <a href="#">Available soon</a>
+                        <a href="https://bitbucket.org/kocasp/railsfoxapp">See Mobile App repository</a>
+                        <br/>
+                        <a href="https://bitbucket.org/kocasp/pkpfox">See Web Service + API repository</a>
                         <br/>
                         <span class="label label-success">Design</span>
                         <span class="label label-warning">Frontend</span>
